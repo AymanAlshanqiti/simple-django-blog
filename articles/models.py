@@ -9,8 +9,8 @@ class Article(models.Model):
     author = models.CharField(max_length=64)
     title = models.CharField(max_length=128)
     description = models.TextField()
-    url = models.CharField(max_length=128)
-    url_to_image = models.CharField(max_length=128)
+    url = models.CharField(max_length=256)
+    url_to_image = models.CharField(max_length=256)
     published_at = models.DateTimeField(auto_now_add=False)
     content = models.TextField()
 

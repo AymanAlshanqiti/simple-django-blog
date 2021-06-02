@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title  %}
+  Articles
+{% endblock title %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row justify-content-center mb-5">
+      {% if not articles %}
+      <div class="alert alert-warning text-center mt-3" role="alert">
+        No Article Found
+      </div>
+      {% else %}
+
+      {% for article in articles %}
+      <div class="card col-12 col-sm-4 col-md-3 px-0 mt-5 mx-3" style="width: 18rem;">
+        <img src="{{article.url_to_image}}" class="card-img-top" alt="{{article.title}}">
+        <div class="card-body">
+          <h5 class="card-title">{{article.title}}</h5>
+          <p class="card-text text-muted">{{article.description}}</p>
+          <a href="{% url 'articles_list' %}" class="btn btn-primary">Read More</a>
+          <a href="{% url 'articles_list' %}" class="btn btn-warning">Add to Favourite</a>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  {% endblock %}
