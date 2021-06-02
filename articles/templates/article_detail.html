@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title  %}
+  {{article.title}}
+{% endblock title %}
+
+{% block content %}
+  <div class="row justify-content-center mb-5">
+    <div class="alert alert-success text-center mt-3" role="alert">
+      {{article.title}}
+    </div>
+  </div>
+  {% endblock %}
