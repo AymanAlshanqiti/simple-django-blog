@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title  %}
+  Registeration
+{% endblock title %}
+
+{% block content %}
+  <div className="row justify-content-center">
+    <div class="container d-flex justify-content-center align-items-center">
+
+      <div class="w-100 mt-5" style="max-width: 400px;">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Sign Up</h2>
+          <hr>
+          <form action="{% url 'registration' %}" method="POST">{% csrf_token %}
+            <label for="email">Email *</label>
+            <input class="form-control mb-4 mt-2" id="email" type="email" name="email" placeholder="your@gmail.com" required>
+              
+            <label for="password">Password *</label>
+            <input class="form-control mb-4 mt-2" id="password" type="password" name="password" required>
+                
+            <label for="first_name">Name *</label>
+            <input class="form-control mb-4 mt-2" id="name" type="text" name="name" placeholder="your full name" required>
+
+            <label for="phone_number">Phone number *</label>
+            <input class="form-control mb-4 mt-2" id="phone_number" type="text" name="phone_number" placeholder="5xxxxxxxx" required>
+
+            <label for="date_of_birth">Date of birth *</label>
+            <input class="form-control mb-4 mt-2" id="date_of_birth" type="date" name="date_of_birth" required>
+
+            <label for="national_id">National id *</label>
+            <input class="form-control mb-4 mt-2" id="national_id" type="text" name="national_id" placeholder="1xxxxxxxxx" required>
+                  
+            <input type="submit" class="btn btn-primary" id="submit" value="Sign Up">
+          </form>
+        </div>
+      </div>
+      <div class="w-100 text-center mt-2">
+        Already have an account? <a href="{% url 'login' %}">Login</a>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
