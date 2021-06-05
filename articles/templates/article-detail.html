@@ -5,8 +5,30 @@
 
 {% block content %}
   <div class="row justify-content-center mb-5">
-    <div class="col-11 alert alert-success text-center mt-3" role="alert">
-      {{article.title}}
+    <div class="col-10 card my-4">
+      <img src="{{article.url_to_image}}" class="card-img-top" alt="article photo">
+      <div class="card-body">
+        <h3 class="card-title">{{article.title}}</h3>
+        <p class="card-text text-muted">{{article.description}}</p>
+        <hr>
+        <p class="card-text">{{article.content}}</p>
+        <p class="card-text"><small class="text-muted">Author: {{article.author}}</small></p>
+        <p class="card-text"><small class="text-muted">URL: <a href="{{article.url}}">click here</a></small></p>
+        <p class="card-text"><small class="text-muted">Source Name: {{article.source_name}}</small></p>
+        {% if request.user.is_authenticated %}
+          {% if favourite_article == True %}
+            <a class="btn btn-danger mt-3" href="{% url 'add-article-to-favourite' article.id %}">
+              <span>Remove from Favourite</span>
+              <i class="bi-heart-fill"></i>
+            </a>
+          {% else %}
+            <a class="btn btn-outline-danger mt-3" href="{% url 'add-article-to-favourite' article.id %}">
+              <span>Add to Favourite</span>
+              <i class="bi-heart-fill"></i>
+            </a>
+          {% endif %}
+        {% endif %}
+      </div>
     </div>
   </div>
   {% endblock %}
