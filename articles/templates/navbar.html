@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'articles_list' %}">Blog</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Blog</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="{% url 'articles_list' %}">Articles</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'articles-list' %}">Articles</a>
         {% if request.user.is_authenticated %}
         <span class="nav-item nav-link">Hello, {{request.user.name}}</span>
         <a href="{% url 'logout' %}"><span class="nav-item nav-link">Logout</span></a>
