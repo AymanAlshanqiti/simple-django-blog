@@ -1,8 +1,9 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
+from account.models import Account
 
 
 class Article(models.Model):
-    source_id = models.CharField(max_length=64, blank=True)
     source_name = models.CharField(max_length=64)
     author = models.CharField(max_length=64)
     title = models.CharField(max_length=128)
@@ -14,3 +15,11 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class FavouriteArticle(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.account.email
