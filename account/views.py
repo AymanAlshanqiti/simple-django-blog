@@ -1,7 +1,9 @@
+import account
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from account.models import Account
 from account.forms import UserLoginForm
+from articles.models import FavouriteArticle
 
 
 def registration_view(request):
@@ -56,3 +58,14 @@ def logout_view(request):
     else:
         logout(request)
         return redirect('home')
+
+
+def user_profile_view(request, account_id):
+    if not request.user.is_authenticated:
+        return redirect('home')
+    else:
+        account = Account.objects.get(id=account_id)
+        favourite_articles = FavouriteArticle.objects.filter(
+            account=account)
+        context = {"favourite_articles": favourite_articles}
+        return render(request, 'profile.html', context)
