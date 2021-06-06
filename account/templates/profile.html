@@ -19,16 +19,18 @@
     {% if favourite_articles %}
       <div class="col-11 col-sm-8 card py-4 mt-3 mx-2 h-100">
         <h2 class="text-center mt-1">My Favourite List</h2>
+        <div class="row justify-content-evenly">
         {% for favourite_article in favourite_articles %}
-        <div class="card col-11 col-sm-4 col-md-3 px-0 mt-5 mx-3" style="max-width: 20rem;">
-          <img src="{{favourite_article.article.url_to_image}}" class="card-img-top" alt="{{favourite_article.article.title}}">
-          <div class="card-body">
-            <h5 class="card-title">{{favourite_article.article.title}}</h5>
-            <p class="card-text text-muted">{{favourite_article.article.description}}</p>
-            <a href="{% url 'article-detail' favourite_article.article.id %}" class="btn btn-primary">Read More</a>
+          <div class="card col-11 col-sm-4 col-md-3 px-0 mt-5 mx-3" style="max-width: 20rem;">
+            <img src="{{favourite_article.article.url_to_image}}" class="card-img-top" alt="{{favourite_article.article.title}}">
+            <div class="card-body">
+              <h5 class="card-title">{{favourite_article.article.title}}</h5>
+              <p class="card-text text-muted">{{favourite_article.article.description}}</p>
+              <a href="{% url 'article-detail' favourite_article.article.id %}" class="btn btn-primary">Read More</a>
+            </div>
           </div>
-        </div>
         {% endfor %}
+        </div>
       </div>
     {% else %}
       <div class="col-11 col-sm-8 alert alert-warning text-center mt-3 mx-2 h-100" role="alert">
