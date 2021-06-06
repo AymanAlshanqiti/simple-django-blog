@@ -7,5 +7,6 @@ urlpatterns = [
     path('<int:article_id>',
          views.article_detail_view, name='article-detail'),
     path('<int:article_id>/add-to-favourite',
-         views.add_article_to_favourite, name='add-article-to-favourite')
+         views.add_article_to_favourite, name='add-article-to-favourite'),
+    path('articles-generator', views.articles_generator, name='articles-generator')
 ]

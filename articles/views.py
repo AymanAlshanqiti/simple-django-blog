@@ -1,5 +1,28 @@
 from django.shortcuts import redirect, render
 from articles.models import Article, FavouriteArticle
+import requests
+import datetime
+
+
+def articles_generator(request):
+    res = requests.get(
+        'https://newsapi.org/v2/everything?q=tesla&from=2021-05-06&sortBy=publishedAt&apiKey=165f4c8876ae4a1981fbe7c2f231d443')
+    json = res.json()
+    for index in range(15):
+        article = Article()
+        article.source_name = json['articles'][index]['source']['name']
+        if json['articles'][index]['author'] != None:
+            article.author = json['articles'][index]['author']
+        else:
+            article.author = '-'
+        article.title = json['articles'][index]['title']
+        article.description = json['articles'][index]['description']
+        article.url = json['articles'][index]['url']
+        article.url_to_image = json['articles'][index]['urlToImage']
+        article.published_at = json['articles'][index]['publishedAt']
+        article.content = json['articles'][index]['content']
+        article.save()
+    return redirect('articles-list')
 
 
 def home_view(request):

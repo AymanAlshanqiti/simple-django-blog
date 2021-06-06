@@ -9,7 +9,7 @@ class Article(models.Model):
     title = models.CharField(max_length=128)
     description = models.TextField()
     url = models.CharField(max_length=256)
-    url_to_image = models.CharField(max_length=256)
+    url_to_image = models.CharField(max_length=512)
     published_at = models.DateTimeField(auto_now_add=False)
     content = models.TextField()
 

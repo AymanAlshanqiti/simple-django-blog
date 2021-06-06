@@ -8,11 +8,14 @@
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="{% url 'articles-list' %}">Articles</a>
         {% if request.user.is_authenticated %}
-        <span class="nav-item nav-link">Hello, <a href="{% url 'user_profile' request.user.id %}">{{request.user.name}}</a></span>
-        <a href="{% url 'logout' %}"><span class="nav-item nav-link">Logout</span></a>
+          <a class="nav-item nav-link" href="{% url 'user_profile' request.user.id %}">Hello <span style="color: #26779e;">{{request.user.name}}</span></a>
+          {% if request.user.is_admin %}
+            <a class="nav-item nav-link d-flex" href="/admin/" style="color: #26779e;">Admin Panel</a>
+          {% endif %}
+          <a class="nav-item nav-link" href="{% url 'logout' %}" style="color: #ff5722;">Logout</a>
         {% else %}
-        <a href="{% url 'login' %}"><span class="nav-item nav-link">Login</span></a>
-        <a href="{% url 'registration' %}"><span class="nav-item nav-link">Register</span></a>
+          <a class="nav-item nav-link" style="color: #26779e;" href="{% url 'login' %}">Login</a>
+          <a class="nav-item nav-link" style="color: #26779e;" href="{% url 'registration' %}">Register</a>
         {% endif %}
       </div>
     </div>

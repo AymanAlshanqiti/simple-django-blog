@@ -4,37 +4,38 @@
 {% endblock title %}
 
 {% block content %}
-  <div class="row justify-content-center mb-5">
-    <div class="col-11 card my-3">
-      <div class="card-body text-center">
-        <h4 class="card-title">{{request.user.name}}</h4>
-        <p class="card-text"><i class="bi-envelope"></i> &nbsp;<small>{{request.user.email}}</small></p>
-        <p class="card-text"><i class="bi-phone"></i> &nbsp;<small>{{request.user.phone_number}}</small></p>
-        <p class="card-text"><i class="bi-gift"></i> &nbsp;<small>{{request.user.date_of_birth}}</small></p>
-        <p class="card-text"><i class="bi-card-text"></i> &nbsp;<small>{{request.user.national_id}}</small></p>
-        <p class="card-text"><i class="bi-calendar"></i> &nbsp;<small>{{request.user.date_joined}}</small></p>
-        <p class="card-text"><i class="bi-calendar-date"></i> &nbsp;<small>{{request.user.last_login}}</small></p>
+  <div class="row justify-content-evenly mb-5">
+    <div class="col-11 col-sm-3 card my-3 h-100">
+      <div class="card-body text-right">
+        <h4 class="card-title text-center" style="border-bottom: 1px dashed #dcdcdc; padding-bottom: 10px;">{{request.user.name}}</h4>
+        <p class="card-text"><i class="bi-envelope"></i> &nbsp; <span class="text-muted">email: </span><small>{{request.user.email}}</small></p>
+        <p class="card-text"><i class="bi-phone"></i> &nbsp; <span class="text-muted">phone: </span> <small>{{request.user.phone_number}}</small></p>
+        <p class="card-text"><i class="bi-gift"></i> &nbsp; <span class="text-muted">date of birth: </span><small>{{request.user.date_of_birth}}</small></p>
+        <p class="card-text"><i class="bi-card-text"></i> &nbsp; <span class="text-muted">national id: </span><small>{{request.user.national_id}}</small></p>
+        <p class="card-text"><i class="bi-calendar"></i> &nbsp; <span class="text-muted">date joined: </span><small>{{request.user.date_joined}}</small></p>
+        <p class="card-text"><i class="bi-calendar-date"></i> &nbsp; <span class="text-muted">last login: </span><small>{{request.user.last_login}}</small></p>
       </div>
     </div>
     {% if favourite_articles %}
-    <div class="col-11 card py-4">
-      <h2 class="text-center mt-1">My Favourite List</h2>
-      {% for favourite_article in favourite_articles %}
-      <div class="card col-11 col-sm-4 col-md-3 px-0 mt-5 mx-3" style="max-width: 20rem;">
-        <img src="{{favourite_article.article.url_to_image}}" class="card-img-top" alt="{{favourite_article.article.title}}">
-        <div class="card-body">
-          <h5 class="card-title">{{favourite_article.article.title}}</h5>
-          <p class="card-text text-muted">{{favourite_article.article.description}}</p>
-          <a href="{% url 'article-detail' favourite_article.article.id %}" class="btn btn-primary">Read More</a>
+      <div class="col-11 col-sm-8 card py-4 mt-3 mx-2 h-100">
+        <h2 class="text-center mt-1">My Favourite List</h2>
+        <div class="row justify-content-evenly">
+        {% for favourite_article in favourite_articles %}
+          <div class="card col-11 col-sm-4 col-md-3 px-0 mt-5 mx-3" style="max-width: 20rem;">
+            <img src="{{favourite_article.article.url_to_image}}" class="card-img-top" alt="{{favourite_article.article.title}}">
+            <div class="card-body">
+              <h5 class="card-title">{{favourite_article.article.title}}</h5>
+              <p class="card-text text-muted">{{favourite_article.article.description}}</p>
+              <a href="{% url 'article-detail' favourite_article.article.id %}" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        {% endfor %}
         </div>
       </div>
-      {% endfor %}
-
     {% else %}
-    <div class="col-11 alert alert-warning text-center mt-3" role="alert">
-      Your favourite list is empty
-    </div>
-  </div>
+      <div class="col-11 col-sm-8 alert alert-warning text-center mt-3 mx-2 h-100" role="alert">
+        Your favourite list is empty
+      </div>
     {% endif %}
   </div>
-  {% endblock %}
+{% endblock %}
