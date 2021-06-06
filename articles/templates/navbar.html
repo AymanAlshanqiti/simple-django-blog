@@ -8,7 +8,7 @@
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="{% url 'articles-list' %}">Articles</a>
         {% if request.user.is_authenticated %}
-        <span class="nav-item nav-link">Hello, {{request.user.name}}</span>
+        <span class="nav-item nav-link">Hello, <a href="{% url 'user_profile' request.user.id %}">{{request.user.name}}</a></span>
         <a href="{% url 'logout' %}"><span class="nav-item nav-link">Logout</span></a>
         {% else %}
         <a href="{% url 'login' %}"><span class="nav-item nav-link">Login</span></a>
